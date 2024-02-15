@@ -1,4 +1,10 @@
+using efcore_razor_pages.MyModel;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<SchoolContext>(
+        options => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=SchoolDb;Trusted_Connection=True;"));
 
 // Add services to the container.
 builder.Services.AddRazorPages();
