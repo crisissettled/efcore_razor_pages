@@ -1,4 +1,9 @@
-﻿namespace efcore_razor_pages.MyModel
+﻿
+
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace efcore_razor_pages.MyModel
 {
     public class Student
     {
@@ -10,6 +15,15 @@
 
         public int GradeId { get; set; }
         public Grade Grade { get; set; }
+    }
+
+    public class StudentConfig : IEntityTypeConfiguration<Student>
+    {
+        public void Configure(EntityTypeBuilder<Student> builder)
+        {
+            builder.ToTable("T_Student");
+            builder.Property(x => x.Gender).HasMaxLength(1).IsRequired();
+        }
     }
 
     public class Grade
