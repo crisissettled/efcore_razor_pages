@@ -7,7 +7,7 @@ namespace efcore_razor_pages.MyModel
 {
     public class Student
     {
-        public int StudentId { get; set; }
+        public Guid StudentId { get; set; }
 
         public string Gender { get; set; }
         public string FirstName { get; set; }
@@ -23,6 +23,7 @@ namespace efcore_razor_pages.MyModel
         {
             builder.ToTable("T_Student");
             builder.Property(x => x.Gender).HasMaxLength(1).IsRequired();
+            //builder.Property(x => x.StudentId).HasDefaultValueSql("newid()");
         }
     }
 

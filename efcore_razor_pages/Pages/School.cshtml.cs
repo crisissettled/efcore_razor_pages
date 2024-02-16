@@ -22,7 +22,7 @@ namespace efcore_razor_pages.Pages
 
                 //create entity objects
                 var grd2 = new Grade() { GradeName = "2st Grade" };
-                var std1 = new Student() { FirstName = "James", LastName = "L", Grade = grd2 };
+                var std1 = new Student() { FirstName = "James", LastName = "L", Grade = grd2, Gender="M" };
 
             //add entitiy to the context
             _context.Students.Add(std1);
