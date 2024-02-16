@@ -15,7 +15,7 @@ namespace efcore_razor_pages.MyModel
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly)
+            modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
         }
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
