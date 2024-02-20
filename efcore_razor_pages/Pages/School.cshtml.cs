@@ -26,7 +26,7 @@ namespace efcore_razor_pages.Pages
 
             //add entitiy to the context
             _context.Students.Add(std1);
-
+          
             //save data to the database tables
             _context.SaveChanges();
           

@@ -7,6 +7,9 @@ namespace efcore_razor_pages.MyModel
         public DbSet<Student> Students { get; set; }
         public DbSet<Grade> Grades { get; set; }
 
+        public DbSet<Order> Order { get; set; }
+        public DbSet<Delivery> Delivery { get; set; }
+
         public SchoolContext(DbContextOptions<SchoolContext> options)
         : base(options)
         {

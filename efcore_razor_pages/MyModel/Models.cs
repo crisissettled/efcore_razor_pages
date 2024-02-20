@@ -39,4 +39,43 @@ namespace efcore_razor_pages.MyModel
 
         public IList<Student> Students { get; set; }
     }
+
+
+
+
+
+    public class Order
+    {
+        public int OrderId { get; set; }
+
+        public string OrderName { get; set; } = string.Empty;
+ 
+        public Delivery DeliveryObj { get; set; }
+    }
+
+
+    public class Delivery
+    {
+        public int DeliveryId { get; set; }
+
+        public string DeliveryName { get;set; }
+
+        public Order OrderObj { get; set; }
+
+
+        public int OrderId { get; set; }
+
+    }
+
+
+
+    public class DeliverConfig : IEntityTypeConfiguration<Delivery>
+    {
+        public void Configure(EntityTypeBuilder<Delivery> builder)
+        {
+            builder.ToTable("T_Delivery");
+            //builder.HasOne(d => d.OrderObj).WithOne(o => o.DeliveryObj).HasForeignKey<Order>(x => x.OrderId);
+            builder.HasOne(d => d.OrderObj).WithOne(o => o.DeliveryObj).HasForeignKey<Delivery>(x => x.OrderId);
+        }
+    }
 }
