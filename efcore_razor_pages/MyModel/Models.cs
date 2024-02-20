@@ -78,4 +78,34 @@ namespace efcore_razor_pages.MyModel
             builder.HasOne(d => d.OrderObj).WithOne(o => o.DeliveryObj).HasForeignKey<Delivery>(x => x.OrderId);
         }
     }
+
+
+
+    public class Teacher
+    {
+        public int TeacherId { get; set;}
+        public string TeacherName { get; set; }
+
+        public List<Xuesheng> Xueshengs { get; set; }
+    }
+
+
+    public class Xuesheng
+    {
+        public int XueshengId { get; set; }
+        public string XueshengName { get; set; }
+
+        public List<Teacher> Teacherss { get; set;}
+    }
+
+
+    public class XueshengConfig : IEntityTypeConfiguration<Xuesheng>
+    {
+        public void Configure(EntityTypeBuilder<Xuesheng> builder)
+        {
+            builder.ToTable("T_Xuesheng");
+
+            builder.HasMany(x => x.Teacherss).WithMany(t => t.Xueshengs).UsingEntity(r => r.ToTable("T_Teacher_Xuesheng"));
+        }
+    }
 }
