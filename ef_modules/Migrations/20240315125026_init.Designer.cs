@@ -3,21 +3,24 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using efcore_razor_pages.MyModel;
+using ef_models;
 
 #nullable disable
 
-namespace efcore_razor_pages.Migrations
+namespace ef_models.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    partial class SchoolContextModelSnapshot : ModelSnapshot
+    [Migration("20240315125026_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.2")
+                .HasAnnotation("ProductVersion", "8.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -37,7 +40,7 @@ namespace efcore_razor_pages.Migrations
                     b.ToTable("T_Teacher_Xuesheng", (string)null);
                 });
 
-            modelBuilder.Entity("efcore_razor_pages.MyModel.Delivery", b =>
+            modelBuilder.Entity("ef_models.Delivery", b =>
                 {
                     b.Property<int>("DeliveryId")
                         .ValueGeneratedOnAdd()
@@ -60,7 +63,7 @@ namespace efcore_razor_pages.Migrations
                     b.ToTable("T_Delivery", (string)null);
                 });
 
-            modelBuilder.Entity("efcore_razor_pages.MyModel.Grade", b =>
+            modelBuilder.Entity("ef_models.Grade", b =>
                 {
                     b.Property<int>("GradeId")
                         .ValueGeneratedOnAdd()
@@ -77,7 +80,7 @@ namespace efcore_razor_pages.Migrations
                     b.ToTable("Grades");
                 });
 
-            modelBuilder.Entity("efcore_razor_pages.MyModel.Order", b =>
+            modelBuilder.Entity("ef_models.Order", b =>
                 {
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
@@ -94,7 +97,7 @@ namespace efcore_razor_pages.Migrations
                     b.ToTable("Order");
                 });
 
-            modelBuilder.Entity("efcore_razor_pages.MyModel.Student", b =>
+            modelBuilder.Entity("ef_models.Student", b =>
                 {
                     b.Property<Guid>("StudentId")
                         .ValueGeneratedOnAdd()
@@ -123,7 +126,7 @@ namespace efcore_razor_pages.Migrations
                     b.ToTable("T_Student", (string)null);
                 });
 
-            modelBuilder.Entity("efcore_razor_pages.MyModel.Teacher", b =>
+            modelBuilder.Entity("ef_models.Teacher", b =>
                 {
                     b.Property<int>("TeacherId")
                         .ValueGeneratedOnAdd()
@@ -140,7 +143,7 @@ namespace efcore_razor_pages.Migrations
                     b.ToTable("Teacher");
                 });
 
-            modelBuilder.Entity("efcore_razor_pages.MyModel.Xuesheng", b =>
+            modelBuilder.Entity("ef_models.Xuesheng", b =>
                 {
                     b.Property<int>("XueshengId")
                         .ValueGeneratedOnAdd()
@@ -159,33 +162,33 @@ namespace efcore_razor_pages.Migrations
 
             modelBuilder.Entity("TeacherXuesheng", b =>
                 {
-                    b.HasOne("efcore_razor_pages.MyModel.Teacher", null)
+                    b.HasOne("ef_models.Teacher", null)
                         .WithMany()
                         .HasForeignKey("TeacherssTeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("efcore_razor_pages.MyModel.Xuesheng", null)
+                    b.HasOne("ef_models.Xuesheng", null)
                         .WithMany()
                         .HasForeignKey("XueshengsXueshengId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("efcore_razor_pages.MyModel.Delivery", b =>
+            modelBuilder.Entity("ef_models.Delivery", b =>
                 {
-                    b.HasOne("efcore_razor_pages.MyModel.Order", "OrderObj")
+                    b.HasOne("ef_models.Order", "OrderObj")
                         .WithOne("DeliveryObj")
-                        .HasForeignKey("efcore_razor_pages.MyModel.Delivery", "OrderId")
+                        .HasForeignKey("ef_models.Delivery", "OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("OrderObj");
                 });
 
-            modelBuilder.Entity("efcore_razor_pages.MyModel.Student", b =>
+            modelBuilder.Entity("ef_models.Student", b =>
                 {
-                    b.HasOne("efcore_razor_pages.MyModel.Grade", "Grade")
+                    b.HasOne("ef_models.Grade", "Grade")
                         .WithMany("Students")
                         .HasForeignKey("GradeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -194,12 +197,12 @@ namespace efcore_razor_pages.Migrations
                     b.Navigation("Grade");
                 });
 
-            modelBuilder.Entity("efcore_razor_pages.MyModel.Grade", b =>
+            modelBuilder.Entity("ef_models.Grade", b =>
                 {
                     b.Navigation("Students");
                 });
 
-            modelBuilder.Entity("efcore_razor_pages.MyModel.Order", b =>
+            modelBuilder.Entity("ef_models.Order", b =>
                 {
                     b.Navigation("DeliveryObj")
                         .IsRequired();

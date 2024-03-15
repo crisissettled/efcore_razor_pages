@@ -1,9 +1,7 @@
-﻿
-
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace efcore_razor_pages.MyModel
+namespace ef_models
 {
     public class Student
     {
@@ -17,15 +15,6 @@ namespace efcore_razor_pages.MyModel
         public Grade Grade { get; set; }
     }
 
-    public class StudentConfig : IEntityTypeConfiguration<Student>
-    {
-        public void Configure(EntityTypeBuilder<Student> builder)
-        {
-            builder.ToTable("T_Student");
-            builder.Property(x => x.Gender).HasMaxLength(1).IsRequired();
-            //builder.Property(x => x.StudentId).HasDefaultValueSql("newid()");
-        }
-    }
 
     public class Grade
     {
@@ -49,7 +38,7 @@ namespace efcore_razor_pages.MyModel
         public int OrderId { get; set; }
 
         public string OrderName { get; set; } = string.Empty;
- 
+
         public Delivery DeliveryObj { get; set; }
     }
 
@@ -58,7 +47,7 @@ namespace efcore_razor_pages.MyModel
     {
         public int DeliveryId { get; set; }
 
-        public string DeliveryName { get;set; }
+        public string DeliveryName { get; set; }
 
         public Order OrderObj { get; set; }
 
@@ -83,7 +72,7 @@ namespace efcore_razor_pages.MyModel
 
     public class Teacher
     {
-        public int TeacherId { get; set;}
+        public int TeacherId { get; set; }
         public string TeacherName { get; set; }
 
         public List<Xuesheng> Xueshengs { get; set; }
@@ -95,7 +84,7 @@ namespace efcore_razor_pages.MyModel
         public int XueshengId { get; set; }
         public string XueshengName { get; set; }
 
-        public List<Teacher> Teacherss { get; set;}
+        public List<Teacher> Teacherss { get; set; }
     }
 
 

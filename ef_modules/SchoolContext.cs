@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ef_models;
+using Microsoft.EntityFrameworkCore;
 
-namespace efcore_razor_pages.MyModel
+namespace ef_models
 {
     public class SchoolContext : DbContext
     {
@@ -21,7 +22,7 @@ namespace efcore_razor_pages.MyModel
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
         }
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
@@ -29,3 +30,5 @@ namespace efcore_razor_pages.MyModel
         //}
     }
 }
+
+

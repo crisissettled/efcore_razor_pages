@@ -1,4 +1,4 @@
-﻿using efcore_razor_pages.MyModel;
+﻿using ef_models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,9 +29,9 @@ namespace efcore_razor_pages.Pages
           
             //save data to the database tables
             _context.SaveChanges();
-          
+    
 
-            Student = await _context.Students
+              Student = await _context.Students
                 .Include(s => s.Grade).ToListAsync();
         }
     }
